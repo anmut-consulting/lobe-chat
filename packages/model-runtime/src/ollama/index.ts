@@ -1,8 +1,7 @@
+import { ChatModelCard } from '@lobechat/types';
 import { Ollama, Tool } from 'ollama/browser';
 import { ClientOptions } from 'openai';
 
-import { ModelRequestOptions, OpenAIChatMessage } from '@/libs/model-runtime';
-import { ChatModelCard } from '@/types/llm';
 import { createErrorResponse } from '@/utils/errorResponse';
 
 import { LobeRuntimeAI } from '../BaseAI';
@@ -13,6 +12,8 @@ import {
   Embeddings,
   EmbeddingsPayload,
   ModelProvider,
+  ModelRequestOptions,
+  OpenAIChatMessage,
   PullModelParams,
 } from '../types';
 import { AgentRuntimeError } from '../utils/createError';
@@ -136,8 +137,8 @@ export class LobeOllamaAI implements LobeRuntimeAI {
           enabled: knownModel?.enabled || false,
           functionCall: knownModel?.abilities?.functionCall || false,
           id: model.name,
-          reasoning: knownModel?.abilities?.functionCall || false,
-          vision: knownModel?.abilities?.functionCall || false,
+          reasoning: knownModel?.abilities?.reasoning || false,
+          vision: knownModel?.abilities?.vision || false,
         };
       })
       .filter(Boolean) as ChatModelCard[];
