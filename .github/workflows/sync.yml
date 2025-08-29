@@ -1,7 +1,7 @@
 name: Upstream Sync
 
-# env:
-#   github_token: ${{ secrets.PA_TOKEN }}
+env:
+  github_token: ${{ secrets.PA_TOKEN }}
 
 permissions:
   contents: write
